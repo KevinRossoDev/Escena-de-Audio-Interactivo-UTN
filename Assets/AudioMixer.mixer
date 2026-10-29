@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!245 &-8702627026417759126
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: "Tensi\xF3n"
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 99fb4d0ad2899bf45b803eafee2158e7
+  m_FloatValues:
+    58103ad4edc4b4a4fa94a178ea87dfa7: -39.703533
+    6a14296769a17f645ba1089b730596cd: -4.560346
+    451762988f9886a408a980329da9d00e: -24.900745
+    06effe8b2d9d151488c472bd2fafea23: 5.1526933
+  m_TransitionOverrides: {}
 --- !u!244 &-7725597234409069129
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -58,6 +73,9 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 1675411701424812860}
+  - {fileID: 504062626973915}
+  - {fileID: -8702627026417759126}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -72,7 +90,7 @@ AudioMixerController:
     - b6ec33785df81904099080fe6bd1b435
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -8702627026417759126}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -120,9 +138,24 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e2ec14c2daa21d9418e473d4ad0e247e
   m_FloatValues:
-    58103ad4edc4b4a4fa94a178ea87dfa7: -29.519157
-    6a14296769a17f645ba1089b730596cd: -9.833286
-    451762988f9886a408a980329da9d00e: -19.928478
+    58103ad4edc4b4a4fa94a178ea87dfa7: -39.703533
+    6a14296769a17f645ba1089b730596cd: -4.560346
+    451762988f9886a408a980329da9d00e: -24.900745
+    06effe8b2d9d151488c472bd2fafea23: 5.1526933
+  m_TransitionOverrides: {}
+--- !u!245 &504062626973915
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Auditorio
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 368340f4fedbb854498c2377ab9a7f6d
+  m_FloatValues:
+    58103ad4edc4b4a4fa94a178ea87dfa7: -39.703533
+    6a14296769a17f645ba1089b730596cd: -4.560346
+    451762988f9886a408a980329da9d00e: -24.900745
     06effe8b2d9d151488c472bd2fafea23: 5.1526933
   m_TransitionOverrides: {}
 --- !u!244 &351875932272257134
@@ -139,6 +172,21 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &1675411701424812860
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Corredor Vacio
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: f36a8ddc799590847bb900c8741c28a5
+  m_FloatValues:
+    58103ad4edc4b4a4fa94a178ea87dfa7: -39.703533
+    6a14296769a17f645ba1089b730596cd: -4.560346
+    451762988f9886a408a980329da9d00e: -24.900745
+    06effe8b2d9d151488c472bd2fafea23: 5.1526933
+  m_TransitionOverrides: {}
 --- !u!244 &1863311560665253877
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
