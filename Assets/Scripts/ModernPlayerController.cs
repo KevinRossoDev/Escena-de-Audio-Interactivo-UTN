@@ -88,7 +88,7 @@ public class ModernPlayerController : MonoBehaviour
 
         sourcePasos.clip = clipsDePasos[Random.Range(0, clipsDePasos.Length)];
         sourcePasos.pitch = Random.Range(0.9f, 1.1f);
-        sourcePasos.volume = Random.Range(0.8f, 1.0f);
+        sourcePasos.volume = Random.Range(0.3f, 0.5f);
         sourcePasos.Play();
     }
 }
