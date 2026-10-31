@@ -12,7 +12,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     58103ad4edc4b4a4fa94a178ea87dfa7: 8.614072
     6a14296769a17f645ba1089b730596cd: 15.10171
-    451762988f9886a408a980329da9d00e: -0.39762628
+    451762988f9886a408a980329da9d00e: 0.13552496
     1827451ba9b779e48b85be37870a21af: -0.27209944
     06effe8b2d9d151488c472bd2fafea23: -0.025776558
   m_TransitionOverrides: {}
@@ -90,7 +90,7 @@ AudioMixerController:
     - b6ec33785df81904099080fe6bd1b435
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -8702627026417759126}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -134,13 +134,13 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Corredor Vacio (01)
+  m_Name: Corredor Vacio
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e2ec14c2daa21d9418e473d4ad0e247e
   m_FloatValues:
     58103ad4edc4b4a4fa94a178ea87dfa7: -9.833286
     6a14296769a17f645ba1089b730596cd: -0.10231405
-    451762988f9886a408a980329da9d00e: -10.34521
+    451762988f9886a408a980329da9d00e: -4.5603485
     1827451ba9b779e48b85be37870a21af: -0.08374829
     06effe8b2d9d151488c472bd2fafea23: 0.13552584
   m_TransitionOverrides: {}
@@ -156,7 +156,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     58103ad4edc4b4a4fa94a178ea87dfa7: -0.27209902
     6a14296769a17f645ba1089b730596cd: 4.648096
-    451762988f9886a408a980329da9d00e: -0.1668526
+    451762988f9886a408a980329da9d00e: -0.16685295
     1827451ba9b779e48b85be37870a21af: 2.850226
     06effe8b2d9d151488c472bd2fafea23: -0.08374829
   m_TransitionOverrides: {}
