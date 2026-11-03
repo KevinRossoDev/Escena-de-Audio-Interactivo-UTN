@@ -11,8 +11,7 @@ public class VoiceTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Busca un objeto hijo del Player llamado "Audio Radio"
-        // Asegurate de que el nombre coincida exactamente
+      
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
