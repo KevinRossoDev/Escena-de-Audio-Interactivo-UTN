@@ -8,17 +8,13 @@ public class EventoSightOrSound : MonoBehaviour
 
     [Header("Reacción del Jugador (Latidos)")]
     public AudioSource latidosPlayer;
-    public float pitchTaquicardia = 1.5f;
+    public float pitchTaquicardia = 1.4f;
     public float volumenTension = 1.0f;
 
-    [Header("Reacción del Jugador (Respiración)")]
-    public AudioSource respiracionPlayer;
-    public AudioClip respiracionAgitada;
-    private AudioClip respiracionNormal; // El script lo anota solo al arrancar
-
-    [Header("Tiempos")]
-    public float duracionPico = 2.0f;
-    public float tiempoDeRecuperacion = 4.0f;
+    [Tooltip("¿Cuántos segundos late rápido?")]
+    public float duracionTaquicardia = 3.0f;
+    [Tooltip("¿Cuántos segundos tarda en volver a la normalidad gradualmente?")]
+    public float tiempoParaCalmarse = 4.0f;
 
     [Header("Configuración del Evento")]
     public bool sonarSoloUnaVez = true;
@@ -28,16 +24,10 @@ public class EventoSightOrSound : MonoBehaviour
 
     private void Start()
     {
-        // Guardamos los valores y audios normales para poder volver a ellos después
         if (latidosPlayer != null)
         {
             pitchNormal = latidosPlayer.pitch;
             volumenNormal = latidosPlayer.volume;
-        }
-
-        if (respiracionPlayer != null)
-        {
-            respiracionNormal = respiracionPlayer.clip;
         }
     }
 
@@ -47,54 +37,51 @@ public class EventoSightOrSound : MonoBehaviour
         {
             if (fuenteDeSonido != null) fuenteDeSonido.Play();
 
-            // 1. Cambiamos la respiración al clip agitado
-            if (respiracionPlayer != null && respiracionAgitada != null)
-            {
-                respiracionPlayer.clip = respiracionAgitada;
-                respiracionPlayer.Play();
-            }
-
-            // 2. Aceleramos el corazón
             if (latidosPlayer != null)
             {
                 latidosPlayer.pitch = pitchTaquicardia;
                 latidosPlayer.volume = volumenTension;
+
                 StartCoroutine(CalmarLatidosGradual());
             }
 
             if (sonarSoloUnaVez)
             {
                 GetComponent<Collider>().enabled = false;
-                Destroy(gameObject, duracionPico + tiempoDeRecuperacion + 1f);
+                // Destruimos el objeto sumando ambos tiempos de la corrutina más un margen
+                Destroy(gameObject, duracionTaquicardia + tiempoParaCalmarse + 1f);
             }
         }
     }
 
     private IEnumerator CalmarLatidosGradual()
     {
-        yield return new WaitForSeconds(duracionPico);
+        // 1. Esperamos el tiempo de taquicardia máxima
+        yield return new WaitForSeconds(duracionTaquicardia);
 
-        float tiempoPasado = 0f;
-        while (tiempoPasado < tiempoDeRecuperacion)
+        if (latidosPlayer != null)
         {
-            tiempoPasado += Time.deltaTime;
-            float porcentaje = tiempoPasado / tiempoDeRecuperacion;
+            float tiempoPasado = 0f;
+            float pitchInicioFade = latidosPlayer.pitch;
+            float volumenInicioFade = latidosPlayer.volume;
 
-            latidosPlayer.pitch = Mathf.Lerp(pitchTaquicardia, pitchNormal, porcentaje);
-            latidosPlayer.volume = Mathf.Lerp(volumenTension, volumenNormal, porcentaje);
+            // 2. Bucle que se ejecuta frame a frame haciendo el fade
+            while (tiempoPasado < tiempoParaCalmarse)
+            {
+                tiempoPasado += Time.deltaTime;
+                float porcentaje = tiempoPasado / tiempoParaCalmarse;
 
-            yield return null;
-        }
+                // Mathf.Lerp calcula el valor intermedio suavemente
+                latidosPlayer.pitch = Mathf.Lerp(pitchInicioFade, pitchNormal, porcentaje);
+                latidosPlayer.volume = Mathf.Lerp(volumenInicioFade, volumenNormal, porcentaje);
 
-       
-        latidosPlayer.pitch = pitchNormal;
-        latidosPlayer.volume = volumenNormal;
+                // Espera al siguiente frame para continuar el bucle
+                yield return null;
+            }
 
-        
-        if (respiracionPlayer != null && respiracionNormal != null)
-        {
-            respiracionPlayer.clip = respiracionNormal;
-            respiracionPlayer.Play();
+            // 3. Nos aseguramos de que los valores queden exactos al terminar
+            latidosPlayer.pitch = pitchNormal;
+            latidosPlayer.volume = volumenNormal;
         }
     }
 }
