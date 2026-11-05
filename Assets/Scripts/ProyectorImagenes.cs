@@ -6,13 +6,12 @@ public class ProyectorImagenes : MonoBehaviour
     [Header("Configuración Visual")]
     [Tooltip("Arrastra aquí el objeto de la pantalla blanca")]
     public Renderer pantallaRenderer;
-    [Tooltip("Carga aquí tus 4 imágenes")]
+    [Tooltip("Imagenes")]
     public Texture2D[] imagenes;
-    [Tooltip("Tiempo en segundos que dura cada imagen en pantalla")]
+    [Tooltip("Tiempor entre imagenes")]
     public float tiempoPorImagen = 0.5f;
 
-    [Header("Audio del Proyector (Bloques C y D)")]
-    [Tooltip("Arrastra aquí el AudioSource del proyector")]
+  
     public AudioSource audioProyector;
     public AudioClip clipCambioDiapositiva;
 
@@ -33,28 +32,32 @@ public class ProyectorImagenes : MonoBehaviour
     {
         while (proyectando)
         {
-            // Cambiar la textura (URP usa "_BaseMap" para la textura principal)
             if (pantallaRenderer != null)
             {
                 pantallaRenderer.material.SetTexture("_BaseMap", imagenes[indiceActual]);
             }
 
-            // Reproducir el "clic" mecánico con variación de pitch (Bloque C)
             if (audioProyector != null && clipCambioDiapositiva != null)
             {
                 audioProyector.pitch = Random.Range(0.85f, 1.15f);
                 audioProyector.PlayOneShot(clipCambioDiapositiva);
             }
 
-            // Avanzar al siguiente índice y reiniciar si llega al final
             indiceActual++;
             if (indiceActual >= imagenes.Length)
             {
                 indiceActual = 0;
             }
 
-            // Esperar antes de cambiar la siguiente imagen
             yield return new WaitForSeconds(tiempoPorImagen);
+        }
+    }
+    public void CambiarListaDeImagenes(Texture2D[] nuevasImagenes)
+    {
+        if (nuevasImagenes.Length > 0)
+        {
+            imagenes = nuevasImagenes; 
+            indiceActual = 0;          
         }
     }
 }

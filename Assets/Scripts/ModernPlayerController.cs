@@ -46,14 +46,12 @@ public class ModernPlayerController : MonoBehaviour
 
     void Update()
     {
-        // 1. ROTACIÓN DE CÁMARA
         Vector2 lookInput = lookAction.ReadValue<Vector2>();
         xRotation -= lookInput.y * mouseSensitivity;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity);
 
-        // 2. MOVIMIENTO FÍSICO
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * walkSpeed * Time.deltaTime);
@@ -62,7 +60,6 @@ public class ModernPlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // 3. LA LÓGICA DE AUDIO (isMoving)
         bool isMoving = moveInput.magnitude > 0.1f;
 
         if (isMoving)
@@ -77,7 +74,6 @@ public class ModernPlayerController : MonoBehaviour
         }
         else
         {
-            // Resetea el tiempo para que el primer paso suene apenas toques WASD
             temporizadorPasos = tiempoEntrePasos;
         }
     }

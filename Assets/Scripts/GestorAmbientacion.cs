@@ -21,7 +21,7 @@ public class GestorAmbientacion : MonoBehaviour
         float velocidadActual = controller.velocity.magnitude;
         float tiempoTransicion = (velocidadActual > 3f) ? 0.5f : 4.0f;
 
-        // 2. CAMBIO DE ESTADO SEGÚN TAGS
+
         if (other.CompareTag("ZonaCorredor"))
         {
             snapCorredor.TransitionTo(tiempoTransicion);

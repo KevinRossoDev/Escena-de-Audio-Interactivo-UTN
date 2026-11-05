@@ -11,9 +11,9 @@ public class EventoSightOrSound : MonoBehaviour
     public float pitchTaquicardia = 1.4f;
     public float volumenTension = 1.0f;
 
-    [Tooltip("¿Cuántos segundos late rápido?")]
+   
     public float duracionTaquicardia = 3.0f;
-    [Tooltip("¿Cuántos segundos tarda en volver a la normalidad gradualmente?")]
+    
     public float tiempoParaCalmarse = 4.0f;
 
     [Header("Configuración del Evento")]
@@ -48,7 +48,6 @@ public class EventoSightOrSound : MonoBehaviour
             if (sonarSoloUnaVez)
             {
                 GetComponent<Collider>().enabled = false;
-                // Destruimos el objeto sumando ambos tiempos de la corrutina más un margen
                 Destroy(gameObject, duracionTaquicardia + tiempoParaCalmarse + 1f);
             }
         }
@@ -56,7 +55,6 @@ public class EventoSightOrSound : MonoBehaviour
 
     private IEnumerator CalmarLatidosGradual()
     {
-        // 1. Esperamos el tiempo de taquicardia máxima
         yield return new WaitForSeconds(duracionTaquicardia);
 
         if (latidosPlayer != null)
@@ -65,7 +63,6 @@ public class EventoSightOrSound : MonoBehaviour
             float pitchInicioFade = latidosPlayer.pitch;
             float volumenInicioFade = latidosPlayer.volume;
 
-            // 2. Bucle que se ejecuta frame a frame haciendo el fade
             while (tiempoPasado < tiempoParaCalmarse)
             {
                 tiempoPasado += Time.deltaTime;
@@ -75,11 +72,9 @@ public class EventoSightOrSound : MonoBehaviour
                 latidosPlayer.pitch = Mathf.Lerp(pitchInicioFade, pitchNormal, porcentaje);
                 latidosPlayer.volume = Mathf.Lerp(volumenInicioFade, volumenNormal, porcentaje);
 
-                // Espera al siguiente frame para continuar el bucle
                 yield return null;
             }
 
-            // 3. Nos aseguramos de que los valores queden exactos al terminar
             latidosPlayer.pitch = pitchNormal;
             latidosPlayer.volume = volumenNormal;
         }
